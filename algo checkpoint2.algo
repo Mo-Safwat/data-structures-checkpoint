@@ -1,0 +1,52 @@
+program SumOfDistinctElements;
+
+var
+    set1: array[1..4] of Integer = (3, 1, 7, 9);
+    set2: array[1..5] of Integer = (2, 4, 1, 9, 3);
+    distinctElements: array of Integer;
+    sum: Integer;
+    i, j: Integer;
+    found: Boolean;
+
+begin
+    sum := 0; 
+    for i := Low(set1) to High(set1) do
+    begin
+        found := False;
+        for j := Low(distinctElements) to High(distinctElements) do
+        begin
+            if set1[i] = distinctElements[j] then
+            begin
+                found := True;
+                Break;
+            end;
+        end;
+        if not found then
+        begin
+            SetLength(distinctElements, Length(distinctElements) + 1);
+            distinctElements[High(distinctElements)] := set1[i];
+            sum := sum + set1[i];
+        end;
+    end;
+    for i := Low(set2) to High(set2) do
+    begin
+        found := False;
+        for j := Low(distinctElements) to High(distinctElements) do
+        begin
+            if set2[i] = distinctElements[j] then
+            begin
+                found := True;
+                Break;
+            end;
+        end;
+        if not found then
+        begin
+            SetLength(distinctElements, Length(distinctElements) + 1);
+            distinctElements[High(distinctElements)] := set2[i];
+            sum := sum + set2[i];
+        end;
+    end;
+
+    WriteLn('Output:', sum); // Output: 13
+
+end.
