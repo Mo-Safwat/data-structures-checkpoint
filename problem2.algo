@@ -1,0 +1,40 @@
+ALGORITHM DotProduct;
+VAR
+    v1, v2: Vector;
+    ps: Real;
+    i: Integer;
+BEGIN
+    ps := 0;
+
+    FOR i FROM 1 TO STEP step  := Low(v1) to High(v1) DO
+    ps := ps + v1[i] * v2[i];
+    Result := 0;
+    END_FOR
+
+    FOR i FROM 1 TO STEP step := Low(v1) to High(v1) DO
+    Result := Result + v1[i] * v2[i];
+    Result := (dot_product_func(v1, v2) = 0);
+    END_FOR
+
+    Write('Enter the number of pairs of vectors to check for orthogonality: ');
+    Read(n);
+    SetLength(v1, n);
+    SetLength(v2, n);
+
+    FOR i FROM 1 TO STEP step := 0 to n - 1 DO
+    Write('Enter the two vectors (separated by a space) for pair ', i + 1, ':');
+    END_FOR
+
+    FOR j FROM 1 TO STEP step := Low(v1) to High(v1) DO
+        Read(v1[j], v2[j]);
+    END_FOR
+
+    IF (is_orthogonal(v1, v2)) THEN
+        Write('The vectors are orthogonal.')
+    ELSE
+        Write('The vectors are not orthogonal.');
+    END_IF
+
+    dot_product(v1, v2, ps);
+    Write('The dot product of the two vectors is ', ps:0:2);
+END
